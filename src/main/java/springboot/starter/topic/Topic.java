@@ -2,29 +2,41 @@ package springboot.starter.topic;
 
 public class Topic {
 
-    private String _name;
-    private String _id;
-    private String _description;
+    public String name;
+    public String id;
+    public String description;
 
     public Topic() {
 
     }
     public Topic(String id, String name, String descrition) {
-        this._id = id;
-        this._description = descrition;
-        this._name = name;
+        this.id = id;
+        this.description = descrition;
+        this.name = name;
     }
 
-    public String get_name() {
-        return _name;
+    public String getName() {
+        return name;
     }
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
-    public String get_description() {
-        return _description;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
 }

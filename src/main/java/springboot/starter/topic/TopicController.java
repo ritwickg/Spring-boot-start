@@ -1,10 +1,7 @@
 package springboot.starter.topic;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,18 +13,35 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
 
-    @RequestMapping("/welcome")
+    @GetMapping("/welcome")
     public String welcomeUser() {
         return "Hi";
     }
 
-    @RequestMapping("/getAll")
+    @GetMapping("/getAll")
     public List<Topic> getAll() {
        return this.topicService.getAllTopics();
     }
 
-    @RequestMapping("getById/{id}")
+    @GetMapping("getById/{id}")
     public Topic getTopicById(@PathVariable String id) {
         return this.topicService.getTopicById(id);
     }
+
+    // @RequestMapping(method = RequestMethod.POST,value = "/addTopic")
+    @PostMapping("/addTopic")
+    public void addTopic(@RequestBody List<Topic> topicRequestBody) {
+        this.topicService.addTopic(topicRequestBody);
+    }
+
+    @PutMapping("/updateTopic/{id}")
+    public void updateTopic(@RequestBody Topic topic, @PathVariable String id)  {
+        this.topicService.updateTopic(id,topic);
+    }
+
+    @DeleteMapping("/deleteTopic/{id}")
+    public  void deleteTopic(@PathVariable String id){
+        this.topicService.deleteTopicById(id);
+    }
+
 }
